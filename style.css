@@ -500,6 +500,129 @@ body {
   position: relative;
 }
 
+/* SERVICES */
+.services {
+  background: var(--cream);
+  padding: 6rem 1.5rem;
+}
+
+.services-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.services-intro {
+  color: #4a3540;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 auto 3.5rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  text-align: left;
+}
+
+.service-card {
+  background: #f0ede9;
+  border: 1px solid rgba(94, 11, 33, 0.12);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(94, 11, 33, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(94, 11, 33, 0.18);
+}
+
+.service-card-header {
+  position: relative;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.service-card-header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(94, 11, 33, 0.15) 0%,
+    rgba(67, 8, 26, 0.55) 100%
+  );
+}
+
+.service-card-badge {
+  position: relative;
+  z-index: 2;
+  background: var(--gold);
+  color: var(--wine-deep);
+  font-size: 0.85rem;
+  font-weight: 700;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.service-card-body {
+  padding: 1.6rem 1.6rem 1.8rem;
+}
+
+.service-card-body h3 {
+  color: var(--wine);
+  font-size: 1.15rem;
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+}
+
+.service-card-body p {
+  color: #6b5560;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.service-highlight {
+  background: rgba(198, 146, 46, 0.1);
+  border-left: 3px solid var(--gold);
+  padding: 0.7rem 0.9rem;
+  font-size: 0.85rem;
+  color: var(--wine-deep);
+  margin-bottom: 1.2rem;
+  border-radius: 4px;
+}
+
+.service-link {
+  color: var(--wine);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.service-card-wide {
+  grid-column: span 1;
+}
+
 /* ============================= */
 /* RESPONSIVE                   */
 /* ============================= */
@@ -515,6 +638,7 @@ body {
     max-width: 420px;
     margin: 0 auto;
   }
+
   .ceo-card {
     align-items: center;
     text-align: center;
@@ -523,7 +647,12 @@ body {
   .about-cards {
     grid-template-columns: 1fr;
   }
+
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
+
 @media (max-width: 820px) {
   .nav-toggle {
     display: flex;
@@ -589,6 +718,14 @@ body {
   .about-stats {
     flex-wrap: wrap;
     gap: 1.4rem 2rem;
+  }
+
+  .services {
+    padding: 4rem 1.2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
   }
 }
 

@@ -56,3 +56,62 @@ async function loopTyping() {
 }
 
 loopTyping();
+
+const eventSlides = document.querySelectorAll(".event-slide");
+const eventDotsContainer = document.getElementById("eventDots");
+const eventPrevBtn = document.getElementById("eventPrev");
+const eventNextBtn = document.getElementById("eventNext");
+const eventSliderEl = document.getElementById("eventSlider");
+let currentEvent = 0;
+let eventAutoplay;
+
+if (eventSlides.length) {
+  eventSlides.forEach((_, i) => {
+    const dot = document.createElement("button");
+    dot.classList.add("event-dot");
+    if (i === 0) dot.classList.add("active");
+    dot.addEventListener("click", () => {
+      showEvent(i);
+      resetAutoplay();
+    });
+    eventDotsContainer.appendChild(dot);
+  });
+
+  const eventDots = document.querySelectorAll(".event-dot");
+
+  function showEvent(index) {
+    eventSlides[currentEvent].classList.remove("active");
+    eventDots[currentEvent].classList.remove("active");
+    currentEvent = (index + eventSlides.length) % eventSlides.length;
+    eventSlides[currentEvent].classList.add("active");
+    eventDots[currentEvent].classList.add("active");
+  }
+
+  function startAutoplay() {
+    eventAutoplay = setInterval(() => {
+      showEvent(currentEvent + 1);
+    }, 5000);
+  }
+
+  function resetAutoplay() {
+    clearInterval(eventAutoplay);
+    startAutoplay();
+  }
+
+  eventPrevBtn.addEventListener("click", () => {
+    showEvent(currentEvent - 1);
+    resetAutoplay();
+  });
+
+  eventNextBtn.addEventListener("click", () => {
+    showEvent(currentEvent + 1);
+    resetAutoplay();
+  });
+
+  eventSliderEl.addEventListener("mouseenter", () =>
+    clearInterval(eventAutoplay),
+  );
+  eventSliderEl.addEventListener("mouseleave", startAutoplay);
+
+  startAutoplay();
+}

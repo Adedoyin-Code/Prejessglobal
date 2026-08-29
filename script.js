@@ -115,3 +115,118 @@ if (eventSlides.length) {
 
   startAutoplay();
 }
+
+/* EVENT REGISTER BUTTONS -> PRE-FILL CONTACT FORM */
+document.querySelectorAll(".event-register").forEach((link) => {
+  link.addEventListener("click", function () {
+    const eventName = this.dataset.event;
+    const price = this.dataset.price;
+    if (!eventName) return;
+
+    setTimeout(() => {
+      const reasonSelect = document.getElementById("reason");
+      const amountInput = document.getElementById("amount");
+      const amountGroup = document.getElementById("amountGroup");
+      const amountHint = document.getElementById("amountHint");
+      const submitBtn = document.getElementById("submitBtn");
+
+      if (eventName.includes("Communication")) {
+        reasonSelect.value = "communication-series";
+      } else if (eventName.includes("School Setup")) {
+        reasonSelect.value = "school-masterclass";
+      }
+
+      if (price === "0") {
+        amountInput.value = 0;
+        amountInput.readOnly = true;
+        amountGroup.classList.add("is-free");
+        amountHint.textContent =
+          "This event is free — click Register below to confirm your spot.";
+        submitBtn.textContent = "Register (Free)";
+      } else {
+        amountInput.value = price;
+        amountInput.readOnly = true;
+        amountGroup.classList.remove("is-free");
+        amountHint.textContent = "Amount is fixed for this event.";
+        submitBtn.textContent = "Register & Pay";
+      }
+    }, 300);
+  });
+});
+
+/* CONTACT FORM SUBMIT: FREE REGISTRATION OR PAYSTACK PAYMENT */
+const registrationForm = document.getElementById("registrationForm");
+
+if (registrationForm) {
+  registrationForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const fullName = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
+    const phone = document.getElementById("phone").value;
+    const reason = document.getElementById("reason").value;
+    const amount = document.getElementById("amount").value;
+    const statusEl = document.getElementById("formStatus");
+
+    function sendTicketEmail(eventName, amountPaid, reference) {
+      if (typeof emailjs === "undefined") return;
+      emailjs.send("YOUR_EMAILJS_SERVICE_ID", "YOUR_EMAILJS_TEMPLATE_ID", {
+        to_name: fullName,
+        to_email: email,
+        event_name: eventName,
+        amount_paid: amountPaid,
+        reference: reference || "FREE-" + Date.now(),
+        phone: phone,
+      });
+    }
+
+    if (!amount || parseFloat(amount) === 0) {
+      const eventLabel =
+        document.getElementById("reason").selectedOptions[0].text;
+      statusEl.textContent =
+        "You're registered! A confirmation has been sent to your email.";
+      statusEl.className = "form-status success";
+      sendTicketEmail(eventLabel, "Free", null);
+      registrationForm.reset();
+      document.getElementById("amountGroup").classList.remove("is-free");
+      document.getElementById("submitBtn").textContent = "Register & Pay";
+      return;
+    }
+
+    const handler = PaystackPop.setup({
+      key: "pk_test_REPLACE_WITH_YOUR_PUBLIC_KEY",
+      email: email,
+      amount: parseFloat(amount) * 100,
+      currency: "NGN",
+      metadata: {
+        custom_fields: [
+          {
+            display_name: "Full Name",
+            variable_name: "full_name",
+            value: fullName,
+          },
+          { display_name: "Phone", variable_name: "phone", value: phone },
+          { display_name: "Reason", variable_name: "reason", value: reason },
+        ],
+      },
+      callback: function (response) {
+        const eventLabel =
+          document.getElementById("reason").selectedOptions[0].text;
+        statusEl.textContent =
+          "Payment successful! Reference: " +
+          response.reference +
+          ". Your ticket has been emailed to you.";
+        statusEl.className = "form-status success";
+        sendTicketEmail(eventLabel, amount, response.reference);
+        registrationForm.reset();
+      },
+      onClose: function () {
+        statusEl.textContent =
+          "Payment window closed. You can try again anytime.";
+        statusEl.className = "form-status error";
+      },
+    });
+
+    handler.openIframe();
+  });
+}

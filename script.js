@@ -194,7 +194,7 @@ if (registrationForm) {
     }
 
     const handler = PaystackPop.setup({
-      key: "pk_test_REPLACE_WITH_YOUR_PUBLIC_KEY",
+      key: "pk_test_8f5ac1a86da00af240d4bf47276e268c04d679c4",
       email: email,
       amount: parseFloat(amount) * 100,
       currency: "NGN",
@@ -228,5 +228,14 @@ if (registrationForm) {
     });
 
     handler.openIframe();
+  });
+}
+
+const eventPopup = document.getElementById("eventPopup");
+const popupClose = document.getElementById("popupClose");
+
+if (eventPopup && popupClose) {
+  popupClose.addEventListener("click", () => {
+    eventPopup.classList.add("hidden");
   });
 }

@@ -230,12 +230,3 @@ if (registrationForm) {
     handler.openIframe();
   });
 }
-
-const eventPopup = document.getElementById("eventPopup");
-const popupClose = document.getElementById("popupClose");
-
-if (eventPopup && popupClose) {
-  popupClose.addEventListener("click", () => {
-    eventPopup.classList.add("hidden");
-  });
-}

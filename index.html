@@ -161,7 +161,7 @@
             <span class="service-card-badge">01</span>
             <div class="service-card-header">
               <img
-                src="img/effective-image.jpg"
+                src="img/english-image.jpg"
                 alt="Effective English Communication"
                 class="service-card-img"
               />
@@ -211,7 +211,7 @@
             <span class="service-card-badge">03</span>
             <div class="service-card-header">
               <img
-                src="img/editing-image.jpg"
+                src="img/editing-image.jpeg"
                 alt="Editing"
                 class="service-card-img"
               />
@@ -322,6 +322,80 @@
               <div class="service-highlight">
                 <strong>Includes:</strong> Planning, licensing &amp; launch
                 strategy
+              </div>
+              <a href="#contact" class="service-link"
+                >Learn More <span>&rarr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <span class="service-card-badge">08</span>
+            <div class="service-card-header">
+              <img
+                src="img/recruitment-image.jpg"
+                alt="Recruitment"
+                class="service-card-img"
+              />
+            </div>
+            <div class="service-card-body">
+              <h3>Recruitment</h3>
+              <p>
+                Connecting institutions and organizations with the right talent
+                for their needs.
+              </p>
+              <div class="service-highlight">
+                <strong>Includes:</strong> Screening, shortlisting &amp;
+                placement support
+              </div>
+              <a href="#contact" class="service-link"
+                >Learn More <span>&rarr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <span class="service-card-badge">09</span>
+            <div class="service-card-header">
+              <img
+                src="img/counselling-image.jpg"
+                alt="Counselling"
+                class="service-card-img"
+              />
+            </div>
+            <div class="service-card-body">
+              <h3>Counselling</h3>
+              <p>
+                Supportive, confidential guidance to help individuals navigate
+                academic and personal challenges.
+              </p>
+              <div class="service-highlight">
+                <strong>Includes:</strong> One-on-one sessions &amp; guided
+                support
+              </div>
+              <a href="#contact" class="service-link"
+                >Learn More <span>&rarr;</span></a
+              >
+            </div>
+          </div>
+
+          <div class="service-card">
+            <span class="service-card-badge">10</span>
+            <div class="service-card-header">
+              <img
+                src="img/career-image.jpg"
+                alt="Career Guidance"
+                class="service-card-img"
+              />
+            </div>
+            <div class="service-card-body">
+              <h3>Career Guidance</h3>
+              <p>
+                Helping individuals identify strengths and chart a clear,
+                confident path forward professionally.
+              </p>
+              <div class="service-highlight">
+                <strong>Includes:</strong> Career assessment &amp; planning
               </div>
               <a href="#contact" class="service-link"
                 >Learn More <span>&rarr;</span></a
@@ -511,10 +585,10 @@
     <section class="contact" id="contact">
       <div class="contact-inner">
         <p class="section-eyebrow">Get In Touch</p>
-        <h2 class="section-title">Register or Book a Consultation</h2>
+        <h2 class="section-title">Register or Get In Touch</h2>
         <p class="contact-intro">
-          Fill out the form below to register for an event or book a
-          consultation with our team. We'll reach out to confirm your details.
+          Fill out the form below to register for an event, book a consultation,
+          or simply reach out with a question. We'll get back to you shortly.
         </p>
 
         <div class="contact-grid">
@@ -536,15 +610,16 @@
                 <input type="tel" id="phone" name="phone" required />
               </div>
               <div class="form-group">
-                <label for="reason">What are you registering for?</label>
+                <label for="reason">What are you reaching out about?</label>
                 <select id="reason" name="reason" required>
                   <option value="">Select an option</option>
-                  <option value="consultation">General Consultation</option>
+                  <option value="general">General Inquiry</option>
+                  <option value="consultation">Book a Consultation</option>
                   <option value="communication-series">
-                    Winning In Communication Series
+                    Winning In Communication Series (Free)
                   </option>
                   <option value="school-masterclass">
-                    School Setup Masterclass
+                    School Setup Masterclass (Paid)
                   </option>
                   <option value="other">Other</option>
                 </select>
@@ -556,7 +631,7 @@
               <textarea id="message" name="message" rows="4"></textarea>
             </div>
 
-            <div class="form-group" id="amountGroup">
+            <div class="form-group hidden" id="amountGroup">
               <label for="amount">Amount to Pay (₦)</label>
               <input
                 type="number"
@@ -566,7 +641,7 @@
                 min="0"
               />
               <p class="form-hint" id="amountHint">
-                Leave blank if this is a free consultation request.
+                This event is free — click Register below to confirm your spot.
               </p>
             </div>
 
@@ -575,7 +650,7 @@
               id="submitBtn"
               class="btn btn-primary contact-submit"
             >
-              Register &amp; Pay
+              Send Message
             </button>
 
             <p id="formStatus" class="form-status"></p>

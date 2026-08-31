@@ -116,19 +116,55 @@ if (eventSlides.length) {
   startAutoplay();
 }
 
+/* PRICING LOOKUP FOR EACH REASON */
+const reasonPricing = {
+  general: null,
+  consultation: null,
+  "communication-series": 0,
+  "school-masterclass": 15000,
+  other: null,
+};
+
+function updateAmountField(reasonValue) {
+  const amountInput = document.getElementById("amount");
+  const amountGroup = document.getElementById("amountGroup");
+  const amountHint = document.getElementById("amountHint");
+  const submitBtn = document.getElementById("submitBtn");
+
+  const price = reasonPricing[reasonValue];
+
+  if (price === null || price === undefined) {
+    amountGroup.classList.add("hidden");
+    amountGroup.classList.remove("is-free");
+    amountInput.value = "";
+    amountInput.readOnly = false;
+    submitBtn.textContent = "Send Message";
+  } else if (price === 0) {
+    amountGroup.classList.remove("hidden");
+    amountGroup.classList.add("is-free");
+    amountInput.value = 0;
+    amountInput.readOnly = true;
+    amountHint.textContent =
+      "This event is free — click Register below to confirm your spot.";
+    submitBtn.textContent = "Register (Free)";
+  } else {
+    amountGroup.classList.remove("hidden");
+    amountGroup.classList.remove("is-free");
+    amountInput.value = price;
+    amountInput.readOnly = true;
+    amountHint.textContent = "Amount is fixed for this event.";
+    submitBtn.textContent = "Register & Pay";
+  }
+}
+
 /* EVENT REGISTER BUTTONS -> PRE-FILL CONTACT FORM */
 document.querySelectorAll(".event-register").forEach((link) => {
   link.addEventListener("click", function () {
     const eventName = this.dataset.event;
-    const price = this.dataset.price;
     if (!eventName) return;
 
     setTimeout(() => {
       const reasonSelect = document.getElementById("reason");
-      const amountInput = document.getElementById("amount");
-      const amountGroup = document.getElementById("amountGroup");
-      const amountHint = document.getElementById("amountHint");
-      const submitBtn = document.getElementById("submitBtn");
 
       if (eventName.includes("Communication")) {
         reasonSelect.value = "communication-series";
@@ -136,25 +172,20 @@ document.querySelectorAll(".event-register").forEach((link) => {
         reasonSelect.value = "school-masterclass";
       }
 
-      if (price === "0") {
-        amountInput.value = 0;
-        amountInput.readOnly = true;
-        amountGroup.classList.add("is-free");
-        amountHint.textContent =
-          "This event is free — click Register below to confirm your spot.";
-        submitBtn.textContent = "Register (Free)";
-      } else {
-        amountInput.value = price;
-        amountInput.readOnly = true;
-        amountGroup.classList.remove("is-free");
-        amountHint.textContent = "Amount is fixed for this event.";
-        submitBtn.textContent = "Register & Pay";
-      }
+      updateAmountField(reasonSelect.value);
     }, 300);
   });
 });
 
-/* CONTACT FORM SUBMIT: FREE REGISTRATION OR PAYSTACK PAYMENT */
+/* MANUAL DROPDOWN SELECTION -> UPDATE AMOUNT FIELD */
+const reasonSelectEl = document.getElementById("reason");
+if (reasonSelectEl) {
+  reasonSelectEl.addEventListener("change", function () {
+    updateAmountField(this.value);
+  });
+}
+
+/* CONTACT FORM SUBMIT: GENERAL MESSAGE, FREE REGISTRATION, OR PAYSTACK PAYMENT */
 const registrationForm = document.getElementById("registrationForm");
 
 if (registrationForm) {
@@ -175,7 +206,7 @@ if (registrationForm) {
         to_email: email,
         event_name: eventName,
         amount_paid: amountPaid,
-        reference: reference || "FREE-" + Date.now(),
+        reference: reference || "N/A-" + Date.now(),
         phone: phone,
       });
     }
@@ -184,12 +215,13 @@ if (registrationForm) {
       const eventLabel =
         document.getElementById("reason").selectedOptions[0].text;
       statusEl.textContent =
-        "You're registered! A confirmation has been sent to your email.";
+        "Thank you! We've received your message and will get back to you shortly.";
       statusEl.className = "form-status success";
-      sendTicketEmail(eventLabel, "Free", null);
+      sendTicketEmail(eventLabel, "N/A", null);
       registrationForm.reset();
+      document.getElementById("amountGroup").classList.add("hidden");
       document.getElementById("amountGroup").classList.remove("is-free");
-      document.getElementById("submitBtn").textContent = "Register & Pay";
+      document.getElementById("submitBtn").textContent = "Send Message";
       return;
     }
 
@@ -219,6 +251,7 @@ if (registrationForm) {
         statusEl.className = "form-status success";
         sendTicketEmail(eventLabel, amount, response.reference);
         registrationForm.reset();
+        document.getElementById("amountGroup").classList.add("hidden");
       },
       onClose: function () {
         statusEl.textContent =
@@ -228,5 +261,14 @@ if (registrationForm) {
     });
 
     handler.openIframe();
+  });
+}
+
+const eventPopup = document.getElementById("eventPopup");
+const popupClose = document.getElementById("popupClose");
+
+if (eventPopup && popupClose) {
+  popupClose.addEventListener("click", () => {
+    eventPopup.classList.add("hidden");
   });
 }

@@ -944,6 +944,10 @@ body {
   margin-bottom: 1.3rem;
 }
 
+.form-group.hidden {
+  display: none;
+}
+
 .form-group label {
   display: block;
   color: var(--wine);

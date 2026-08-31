@@ -1288,6 +1288,124 @@ body {
   box-shadow: 0 8px 20px rgba(198, 146, 46, 0.4);
 }
 
+/* FOOTER */
+.footer {
+  background: var(--wine-deep);
+  padding: 4rem 1.5rem 0;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(198, 146, 46, 0.2);
+}
+
+.footer-logo {
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.footer-tagline {
+  color: rgba(251, 248, 243, 0.6);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  margin-bottom: 1.4rem;
+  max-width: 320px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(198, 146, 46, 0.3);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+.footer-social a:hover {
+  background: var(--gold);
+  color: var(--wine-deep);
+}
+
+.footer-links h4,
+.footer-contact h4 {
+  color: var(--gold-light);
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.footer-links ul,
+.footer-contact ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.footer-links a {
+  color: rgba(251, 248, 243, 0.65);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--gold-light);
+}
+
+.footer-contact li {
+  color: rgba(251, 248, 243, 0.65);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-contact a {
+  color: rgba(251, 248, 243, 0.65);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-contact a:hover {
+  color: var(--gold-light);
+}
+
+.footer-contact i {
+  color: var(--gold);
+  width: 16px;
+}
+
+.footer-bottom {
+  padding: 1.6rem 0;
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(251, 248, 243, 0.45);
+  font-size: 0.82rem;
+}
 /* ============================= */
 /* RESPONSIVE                   */
 /* ============================= */
@@ -1344,6 +1462,10 @@ body {
 
   .form-row {
     grid-template-columns: 1fr;
+  }
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 }
 
@@ -1462,6 +1584,9 @@ body {
   }
   .faq-question span {
     font-size: 0.98rem;
+  }
+  .footer {
+    padding: 3rem 1.2rem 0;
   }
 }
 

@@ -1,0 +1,170 @@
+/* ============================= */
+/* ABOUT PAGE — shares tokens from style.css */
+/* ============================= */
+
+.about-page-body {
+  background: var(--cream);
+  padding: 5rem 1.5rem 2rem;
+}
+
+.about-page-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.about-page-inner > p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #4a3540;
+  margin-bottom: 1.4rem;
+}
+
+.about-page-lede {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: var(--wine);
+  margin-bottom: 2rem;
+}
+
+.about-page-inner h2 {
+  color: var(--wine);
+  font-size: 1.6rem;
+  line-height: 1.35;
+  margin: 3rem 0 1.2rem;
+}
+
+.about-page-inner h3 {
+  color: var(--wine-deep);
+  font-size: 1.05rem;
+  margin: 1.6rem 0 0.5rem;
+}
+
+.about-page-inner strong {
+  color: var(--wine-deep);
+}
+
+/* What We Do — reuse a light card grid */
+.about-service-list {
+  display: grid;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.about-service-item {
+  background: #ffffff;
+  border: 1px solid rgba(94, 11, 33, 0.1);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 1.4rem 1.6rem;
+}
+
+.about-service-item h3 {
+  color: var(--wine);
+  font-size: 1.05rem;
+  margin: 0 0 0.5rem;
+}
+
+.about-service-item p {
+  color: #4a3540;
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+/* Who we serve */
+.about-who-list {
+  margin: 1.5rem 0 0 1.3rem;
+}
+
+.about-who-list li {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: #4a3540;
+  margin-bottom: 0.5rem;
+}
+
+/* Four principles */
+.about-principles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+  margin-top: 1.6rem;
+}
+
+.about-principle {
+  border: 1.5px solid var(--wine);
+  border-radius: 8px;
+  padding: 1.4rem 1.5rem;
+}
+
+.about-principle:nth-child(2n) {
+  border-color: var(--gold);
+}
+
+.about-principle h3 {
+  color: var(--wine);
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+  text-transform: none;
+}
+
+.about-principle p {
+  color: #4a3540;
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+/* Why PrejessGlobal */
+.about-why-list {
+  display: grid;
+  gap: 1.3rem;
+  margin-top: 1.6rem;
+}
+
+.about-why-item h3 {
+  color: var(--wine);
+  font-size: 1.02rem;
+  margin: 0 0 0.35rem;
+}
+
+.about-why-item p {
+  color: #4a3540;
+  font-size: 0.96rem;
+  line-height: 1.7;
+}
+
+.about-closing {
+  background: var(--wine);
+  margin-top: 1rem;
+  padding: 3.8rem 1.5rem;
+  text-align: center;
+}
+
+.about-closing-inner {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.about-closing h2 {
+  color: var(--cream);
+  font-size: 1.6rem;
+  margin-bottom: 1.1rem;
+}
+
+.about-closing p {
+  color: #e8d9de;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 1.8rem;
+}
+
+@media (max-width: 700px) {
+  .about-page-body {
+    padding: 3.5rem 1.2rem 1.5rem;
+  }
+  .about-principles {
+    grid-template-columns: 1fr;
+  }
+  .about-closing {
+    padding: 3rem 1.2rem;
+  }
+}

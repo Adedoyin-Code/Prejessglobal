@@ -201,7 +201,7 @@ if (registrationForm) {
 
     function sendTicketEmail(eventName, amountPaid, reference) {
       if (typeof emailjs === "undefined") return;
-      emailjs.send("YOUR_EMAILJS_SERVICE_ID", "YOUR_EMAILJS_TEMPLATE_ID", {
+      emailjs.send("service_6wmfium", "template_h0roc3c", {
         to_name: fullName,
         to_email: email,
         event_name: eventName,
@@ -286,3 +286,8 @@ document.querySelectorAll(".faq-question").forEach((button) => {
     }
   });
 });
+
+const footerYearEl = document.getElementById("footerYear");
+if (footerYearEl) {
+  footerYearEl.textContent = new Date().getFullYear();
+}

@@ -272,3 +272,17 @@ if (eventPopup && popupClose) {
     eventPopup.classList.add("hidden");
   });
 }
+document.querySelectorAll(".faq-question").forEach((button) => {
+  button.addEventListener("click", () => {
+    const item = button.closest(".faq-item");
+    const isOpen = item.classList.contains("open");
+
+    document
+      .querySelectorAll(".faq-item")
+      .forEach((el) => el.classList.remove("open"));
+
+    if (!isOpen) {
+      item.classList.add("open");
+    }
+  });
+});

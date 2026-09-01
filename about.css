@@ -2,9 +2,108 @@
 /* ABOUT PAGE — shares tokens from style.css */
 /* ============================= */
 
+/* Founder section */
+.founder-section {
+  background: var(--cream);
+  padding: 4rem 1.5rem 1rem;
+}
+
+.founder-grid {
+  max-width: 900px;
+  margin: -6rem auto 0;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(94, 11, 33, 0.18);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2.2rem;
+  align-items: center;
+  padding: 2.2rem 2.4rem;
+  border: 1px solid rgba(94, 11, 33, 0.08);
+}
+
+.founder-photo-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--gold);
+  box-shadow: 0 10px 26px rgba(94, 11, 33, 0.2);
+}
+
+.founder-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.founder-photo-wrap .ceo-badge {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(0deg);
+}
+
+.founder-info .section-eyebrow {
+  margin-bottom: 0.5rem;
+}
+
+.founder-name {
+  color: var(--wine);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.founder-title {
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+
+.founder-bio {
+  color: #4a3540;
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+/* Stats band inside the article column */
+.about-stats-band {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: 2.2rem 0 2.6rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(94, 11, 33, 0.15);
+  border-bottom: 1px solid rgba(94, 11, 33, 0.15);
+}
+
+.about-stats-band .stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.about-stats-band .stat-num {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--wine);
+}
+
+.about-stats-band .stat-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #7a6068;
+}
+
 .about-page-body {
   background: var(--cream);
-  padding: 5rem 1.5rem 2rem;
+  padding: 3.5rem 1.5rem 2rem;
 }
 
 .about-page-inner {
@@ -23,14 +122,17 @@
   font-size: 1.2rem;
   line-height: 1.7;
   color: var(--wine);
-  margin-bottom: 2rem;
+  margin-bottom: 0 !important;
 }
 
 .about-page-inner h2 {
   color: var(--wine);
   font-size: 1.6rem;
   line-height: 1.35;
-  margin: 3rem 0 1.2rem;
+  margin: 3.2rem 0 1.2rem;
+  position: relative;
+  padding-left: 1rem;
+  border-left: 3px solid var(--gold);
 }
 
 .about-page-inner h3 {
@@ -43,9 +145,10 @@
   color: var(--wine-deep);
 }
 
-/* What We Do — reuse a light card grid */
+/* What We Do — icon cards */
 .about-service-list {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1.2rem;
   margin-top: 1.5rem;
 }
@@ -53,33 +156,77 @@
 .about-service-item {
   background: #ffffff;
   border: 1px solid rgba(94, 11, 33, 0.1);
-  border-left: 3px solid var(--gold);
-  border-radius: 8px;
-  padding: 1.4rem 1.6rem;
+  border-radius: 10px;
+  padding: 1.5rem 1.6rem 1.6rem;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.about-service-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(94, 11, 33, 0.12);
+}
+
+.about-service-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(198, 146, 46, 0.12);
+  color: var(--gold);
+  font-size: 1.05rem;
+  margin-bottom: 0.9rem;
 }
 
 .about-service-item h3 {
   color: var(--wine);
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   margin: 0 0 0.5rem;
 }
 
 .about-service-item p {
   color: #4a3540;
-  font-size: 0.96rem;
-  line-height: 1.7;
+  font-size: 0.93rem;
+  line-height: 1.65;
 }
 
-/* Who we serve */
+/* Who we serve — icon rows */
 .about-who-list {
-  margin: 1.5rem 0 0 1.3rem;
+  list-style: none;
+  margin: 1.5rem 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
 }
 
 .about-who-list li {
-  font-size: 1.02rem;
-  line-height: 1.85;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  font-size: 1rem;
+  line-height: 1.75;
   color: #4a3540;
-  margin-bottom: 0.5rem;
+  background: #ffffff;
+  border: 1px solid rgba(94, 11, 33, 0.08);
+  border-radius: 8px;
+  padding: 0.9rem 1.1rem;
+}
+
+.about-who-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: var(--gold-light);
+  font-size: 0.85rem;
+  margin-top: 0.15rem;
 }
 
 /* Four principles */
@@ -113,11 +260,36 @@
   line-height: 1.65;
 }
 
-/* Why PrejessGlobal */
+/* Why PrejessGlobal — icon rows */
 .about-why-list {
-  display: grid;
-  gap: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
   margin-top: 1.6rem;
+}
+
+.about-why-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+  background: #ffffff;
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 1.2rem 1.4rem;
+  box-shadow: 0 4px 14px rgba(94, 11, 33, 0.06);
+}
+
+.about-why-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(94, 11, 33, 0.06);
+  color: var(--wine);
+  font-size: 1rem;
 }
 
 .about-why-item h3 {
@@ -157,9 +329,35 @@
   margin-bottom: 1.8rem;
 }
 
+@media (max-width: 820px) {
+  .founder-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    max-width: 480px;
+    margin-top: -4rem;
+    padding: 2rem 1.8rem;
+  }
+
+  .founder-photo-wrap {
+    width: 150px;
+    margin: 0 auto;
+  }
+
+  .about-service-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 700px) {
+  .founder-section {
+    padding: 3rem 1.2rem 1rem;
+  }
   .about-page-body {
-    padding: 3.5rem 1.2rem 1.5rem;
+    padding: 2.5rem 1.2rem 1.5rem;
+  }
+  .about-stats-band {
+    flex-wrap: wrap;
+    gap: 1.2rem 2rem;
   }
   .about-principles {
     grid-template-columns: 1fr;

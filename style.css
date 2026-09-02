@@ -1406,6 +1406,58 @@ body {
   color: rgba(251, 248, 243, 0.45);
   font-size: 0.82rem;
 }
+
+.footer-credit {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+}
+
+.footer-credit a {
+  color: var(--gold-light);
+  text-decoration: none;
+}
+
+.footer-credit a:hover {
+  text-decoration: underline;
+}
+
+/* WHATSAPP FLOAT BUTTON */
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.7rem;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.whatsapp-float.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.whatsapp-float:hover {
+  background: #1ebe5b;
+  transform: scale(1.08);
+}
+
 /* SERVICES PAGE */
 .svc-hero {
   position: relative;
@@ -1597,6 +1649,7 @@ body {
 .svc-commitment-inner .btn {
   margin-top: 1rem;
 }
+
 /* ============================= */
 /* RESPONSIVE                   */
 /* ============================= */
@@ -1788,6 +1841,12 @@ body {
   .footer {
     padding: 3rem 1.2rem 0;
   }
+  .whatsapp-float {
+    width: 52px;
+    height: 52px;
+    font-size: 1.5rem;
+    bottom: 90px;
+  }
   .svc-hero {
     padding: 4.5rem 1.2rem 3.5rem;
   }
@@ -1821,5 +1880,9 @@ body {
 
   .popup-glow {
     animation: none;
+  }
+
+  .whatsapp-float {
+    transition: none;
   }
 }

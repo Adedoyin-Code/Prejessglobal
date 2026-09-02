@@ -185,6 +185,26 @@ if (reasonSelectEl) {
   });
 }
 
+/* GOOGLE SHEET LOGGING */
+function logToGoogleSheet(name, email, phone, eventName, amount, reference) {
+  fetch(
+    "https://script.google.com/macros/s/AKfycbze8jvTEFeDpibtrhzEWTIWcqmZ6UzbGCPVYV75HUkckKVTpLIqQDlVlkgkzYKOGDf0/exec",
+    {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        phone: phone,
+        event: eventName,
+        amount: amount,
+        reference: reference,
+      }),
+    },
+  ).catch((error) => console.error("Sheet logging failed:", error));
+}
+
 /* CONTACT FORM SUBMIT: GENERAL MESSAGE, FREE REGISTRATION, OR PAYSTACK PAYMENT */
 const registrationForm = document.getElementById("registrationForm");
 
@@ -211,13 +231,21 @@ if (registrationForm) {
       });
     }
 
+    function generateTicketId() {
+      const rand = Math.random().toString(36).substring(2, 6).toUpperCase();
+      const time = Date.now().toString(36).toUpperCase();
+      return "PG-" + time + "-" + rand;
+    }
+
     if (!amount || parseFloat(amount) === 0) {
       const eventLabel =
         document.getElementById("reason").selectedOptions[0].text;
+      const ticketId = generateTicketId();
       statusEl.textContent =
-        "Thank you! We've received your message and will get back to you shortly.";
+        "Thank you! Check your email for your confirmation and ticket ID.";
       statusEl.className = "form-status success";
-      sendTicketEmail(eventLabel, "N/A", null);
+      sendTicketEmail(eventLabel, "Free", ticketId);
+      logToGoogleSheet(fullName, email, phone, eventLabel, "Free", ticketId);
       registrationForm.reset();
       document.getElementById("amountGroup").classList.add("hidden");
       document.getElementById("amountGroup").classList.remove("is-free");
@@ -245,11 +273,17 @@ if (registrationForm) {
         const eventLabel =
           document.getElementById("reason").selectedOptions[0].text;
         statusEl.textContent =
-          "Payment successful! Reference: " +
-          response.reference +
-          ". Your ticket has been emailed to you.";
+          "Payment successful! Check your email for your ticket.";
         statusEl.className = "form-status success";
         sendTicketEmail(eventLabel, amount, response.reference);
+        logToGoogleSheet(
+          fullName,
+          email,
+          phone,
+          eventLabel,
+          amount,
+          response.reference,
+        );
         registrationForm.reset();
         document.getElementById("amountGroup").classList.add("hidden");
       },
@@ -290,4 +324,15 @@ document.querySelectorAll(".faq-question").forEach((button) => {
 const footerYearEl = document.getElementById("footerYear");
 if (footerYearEl) {
   footerYearEl.textContent = new Date().getFullYear();
+}
+
+const whatsappBtn = document.getElementById("whatsappFloat");
+if (whatsappBtn) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      whatsappBtn.classList.add("show");
+    } else {
+      whatsappBtn.classList.remove("show");
+    }
+  });
 }
